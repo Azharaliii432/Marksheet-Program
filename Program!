@@ -1,0 +1,65 @@
+Certainly! Here's a simple Java console-based calculator that supports basic operations like addition, subtraction, multiplication, and division.
+
+```java
+import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Simple Calculator");
+        System.out.println("-----------------");
+
+        // Input the first number
+        System.out.print("Enter first number: ");
+        double num1 = scanner.nextDouble();
+
+        // Input the second number
+        System.out.print("Enter second number: ");
+        double num2 = scanner.nextDouble();
+
+        // Input the operator
+        System.out.print("Enter an operator (+, -, *, /): ");
+        char operator = scanner.next().charAt(0);
+
+        double result;
+
+        // Perform the operation
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2 != 0) {
+                    result = num1 / num2;
+                } else {
+                    System.out.println("Error: Division by zero is not allowed.");
+                    return;
+                }
+                break;
+            default:
+                System.out.println("Error: Invalid operator.");
+                return;
+        }
+
+        // Display the result
+        System.out.printf("The result of %.2f %c %.2f is %.2f%n", num1, operator, num2, result);
+
+        scanner.close();
+    }
+}
+```
+
+### Explanation
+
+1. **Import the Scanner class**: This allows us to take input from the user.
+2. **Create the Scanner object**: This is used to read input from the console.
+3. **Prompt the user**: For the first number, second number, and the operation.
+4. **Perform the calculation**: Using a switch statement based on the operator.
+5. **Display the result**: Print the result of the calculation to the consol
