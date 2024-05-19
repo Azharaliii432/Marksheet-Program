@@ -1,0 +1,116 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class StudentMarksheet {
+    public static void main(String args []) {
+        System.out.print("---------------| Input Student Marksheet |---------------");
+        
+        // Prints paragraph space
+        System.out.println("\n");
+        
+        // For taking input Scanner class
+        Scanner numbers = new Scanner(System.in);
+        
+        // Takes input for number of students
+        System.out.print("Enter the number of students: ");
+        int size = numbers.nextInt();
+        
+        // Prints paragraph space
+        System.out.println();
+        
+        // Array for student name
+        String [] studentName = new String[size];
+        
+        // Array for student marks
+        double [] studentMarks = new double[size];
+        
+        // Loop takes input for student name and student marks
+        for(int i = 0; i < size; i++) {
+            System.out.print("Student Name "+(i+1)+": ");
+            studentName[i] = numbers.next();
+            
+            System.out.print("Student Marks "+(i + 1)+": ");
+            studentMarks[i] = numbers.nextDouble();
+        }
+        
+        // Prints paragraph space
+        System.out.println();
+        
+        // Upper border
+        System.out.println("---------------| Output Student Marksheet |--------------");
+        
+        // Prints paragraph space
+        System.out.println();
+        
+        // Sort students based on marks
+        sortStudents(studentName, studentMarks);
+        
+        // Loop prints student name, student marks, and grade
+        for(int i = 0; i < size; i++) {
+            String grade = calculateGrade(studentMarks[i]);
+            System.out.println("Student Name: " + studentName[i] + " : " + "Student Marks: " + studentMarks[i] + " : " + "Grade: " + grade);
+        }
+        
+        // Print paragraph space
+        System.out.println();
+        
+        // Print highest and lowest marks
+        printHighestAndLowest(studentName, studentMarks);
+        
+        // Print average marks
+        double averageMarks = calculateAverage(studentMarks);
+        System.out.println("Average Marks: " + averageMarks);
+        
+        // Prints lowest border
+        System.out.println("---------------------------------------------------------");
+    }
+    
+    // Function to calculate grade based on marks
+    public static String calculateGrade(double marks) {
+        if(marks >= 90) {
+            return "A";
+        } else if(marks >= 80) {
+            return "B";
+        } else if(marks >= 70) {
+            return "C";
+        } else if(marks >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
+    }
+    
+    // Function to sort students based on marks
+    public static void sortStudents(String[] studentName, double[] studentMarks) {
+        for (int i = 0; i < studentMarks.length - 1; i++) {
+            for (int j = 0; j < studentMarks.length - i - 1; j++) {
+                if (studentMarks[j] > studentMarks[j + 1]) {
+                    // Swap marks
+                    double tempMark = studentMarks[j];
+                    studentMarks[j] = studentMarks[j + 1];
+                    studentMarks[j + 1] = tempMark;
+                    
+                    // Swap names
+                    String tempName = studentName[j];
+                    studentName[j] = studentName[j + 1];
+                    studentName[j + 1] = tempName;
+                }
+            }
+        }
+    }
+    
+    // Function to print highest and lowest marks
+    public static void printHighestAndLowest(String[] studentName, double[] studentMarks) {
+        System.out.println("Highest Marks: " + studentMarks[studentMarks.length - 1] + " by " + studentName[studentMarks.length - 1]);
+        System.out.println("Lowest Marks: " + studentMarks[0] + " by " + studentName[0]);
+    }
+    
+    // Function to calculate average marks
+    public static double calculateAverage(double[] studentMarks) {
+        double sum = 0;
+        for (double mark : studentMarks) {
+            sum += mark;
+        }
+        return sum / studentMarks.length;
+    }
+}
